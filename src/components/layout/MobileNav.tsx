@@ -30,14 +30,13 @@ export default function MobileNav() {
             left-0
             right-0
             top-20
-            h-[calc(100vh-5rem)]
-            bg-black/95
-            backdrop-blur-xl
             border-b
             border-zinc-900
+            bg-black/95
+            backdrop-blur-xl
           "
         >
-          <nav className="flex h-full flex-col p-8">
+          <nav className="flex flex-col p-8">
             {links.map((link) => (
               <NavLink
                 key={link.label}
@@ -56,9 +55,8 @@ export default function MobileNav() {
               </NavLink>
             ))}
 
-            {/* Consultation CTA */}
-            <div className="mt-auto pt-6 border-t border-zinc-800">
-              <ConsultationButton />
+            <div className="mt-6 border-t border-zinc-800 pt-6">
+              <ConsultationButton className="flex w-full justify-center" />
             </div>
           </nav>
         </div>

@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 
-export default function ConsultationButton() {
+interface ConsultationButtonProps {
+  className?: string;
+}
+
+export default function ConsultationButton({
+  className = "",
+}: ConsultationButtonProps) {
   return (
     <Link
       to="/consultation"
-      className="
+      className={`
         inline-flex
         items-center
+        justify-center
         rounded-full
         border
         border-zinc-800
@@ -17,7 +24,8 @@ export default function ConsultationButton() {
         transition-all
         duration-300
         hover:border-zinc-600
-      "
+        ${className}
+      `}
     >
       Consultation
     </Link>
