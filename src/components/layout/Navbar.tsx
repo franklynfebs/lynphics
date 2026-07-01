@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 
 import Container from "../shared/Container";
 import DesktopNav from "./DesktopNav";
-import MobileNav from "./MobileNav";
-import ConsultationButton from "./ConsultationButton";
+import MobileNav from "./MobileNav"; 
 import useNavbarScroll from "../../hooks/useNavbarScroll";
 
 import logo from "../../assets/logo/lynphics-logo.png";
@@ -31,7 +30,6 @@ export default function Navbar() {
 
           <div className="flex items-center gap-8">
             <DesktopNav />
-            <ConsultationButton />
             <MobileNav />
           </div>
         </div>

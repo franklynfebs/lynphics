@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import ConsultationButton from "./ConsultationButton";
 
 const links = [
   { label: "Home", path: "/" },
@@ -17,6 +18,7 @@ export default function MobileNav() {
       <button
         onClick={() => setOpen(!open)}
         className="text-white"
+        aria-label={open ? "Close menu" : "Open menu"}
       >
         {open ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -28,13 +30,14 @@ export default function MobileNav() {
             left-0
             right-0
             top-20
-            border-b
-            border-zinc-900
+            h-[calc(100vh-5rem)]
             bg-black/95
             backdrop-blur-xl
+            border-b
+            border-zinc-900
           "
         >
-          <nav className="flex flex-col p-8">
+          <nav className="flex h-full flex-col p-8">
             {links.map((link) => (
               <NavLink
                 key={link.label}
@@ -52,6 +55,11 @@ export default function MobileNav() {
                 {link.label}
               </NavLink>
             ))}
+
+            {/* Consultation CTA */}
+            <div className="mt-auto pt-6 border-t border-zinc-800">
+              <ConsultationButton />
+            </div>
           </nav>
         </div>
       )}
