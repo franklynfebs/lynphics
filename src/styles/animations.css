@@ -1,0 +1,17 @@
+.transition-color {
+  transition:
+    color 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+.transition-border {
+  transition:
+    border-color 300ms ease,
+    color 300ms ease;
+}
+
+.nav-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}

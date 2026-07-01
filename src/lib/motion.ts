@@ -1,0 +1,2 @@
+export const DIAGRAM_PULSE_DURATION = 5;
+export const GRID_BREATH_DURATION = 12;

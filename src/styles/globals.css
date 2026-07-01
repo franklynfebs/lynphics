@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0b0b;
+  --surface: #111111;
+  --border: #1f1f1f;
+  --foreground: #f5f5f5;
+  --muted: #a1a1aa;
+  --accent: #26a9c3;
+.text-accent {
+  color: var(--accent);
+}
+
+.bg-accent {
+  background: var(--accent);
+}
+
+.border-accent {
+  border-color: var(--accent);
+}
+
+
+:root {
+  /* Colors */
+  --background: #000000;
+  --foreground: #ffffff;
+  --accent: #26a9c3;
+
+  /* Neutrals */
+  --zinc-950: #09090b;
+  --zinc-900: #18181b;
+  --zinc-800: #27272a;
+  --zinc-500: #71717a;
+  --zinc-400: #a1a1aa;
+
+  /* Layout */
+  --container-width: 1440px;
+
+  /* Motion */
+  --transition-fast: 200ms;
+  --transition-normal: 300ms;
+  --transition-slow: 600ms;
+}
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif,
+    Kenyan Coffee;
+  
+}
+
+.font-brand {
+  font-family: "Kenyan Coffee", sans-serif;
+}
+
