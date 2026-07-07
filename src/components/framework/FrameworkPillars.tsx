@@ -24,7 +24,7 @@ export default function FrameworkPillars() {
       <Container>
         <div className="mb-20">
           <p className="mb-6 text-sm uppercase tracking-[0.3em] text-zinc-500">
-            Three Pillars
+            Trust Architecture
           </p>
 
           <h2 className="text-4xl font-light md:text-5xl">
