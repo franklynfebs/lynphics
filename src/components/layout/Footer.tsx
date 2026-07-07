@@ -107,7 +107,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="mailto:infolynphics@gmail.com"
+                  href="mailto:info@lynphics.com"
                   className="
                     flex
                     items-center
