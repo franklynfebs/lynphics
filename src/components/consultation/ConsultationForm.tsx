@@ -58,8 +58,8 @@ export default function ConsultationForm() {
             <div className="grid gap-8 md:grid-cols-2">
 
               <select
-                className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
                 defaultValue=""
+                className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
                   Industry
@@ -77,8 +77,8 @@ export default function ConsultationForm() {
               </select>
 
               <select
-                className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
                 defaultValue=""
+                className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
                   Company Size
@@ -92,36 +92,106 @@ export default function ConsultationForm() {
 
             </div>
 
-            {/* Services */}
+            {/* Areas of Improvement */}
 
             <div>
 
-              <p className="mb-5 text-sm uppercase tracking-[0.2em] text-zinc-500">
-                Services Required
+              <p className="mb-8 text-sm uppercase tracking-[0.2em] text-zinc-500">
+                What area would you like LYNPHICS to help improve?
               </p>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-10">
 
-                {[
-                  "Branding",
-                  "Website",
-                  "Business Presentation",
-                  "Operational Systems",
-                  "Digital Presence",
-                  "Business Strategy",
-                  "Complete Business Modernization",
-                ].map((service) => (
-                  <label
-                    key={service}
-                    className="flex items-center gap-3 text-zinc-300"
-                  >
+                <div>
+                  <h3 className="mb-4 text-lg text-white">Presentation</h3>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+
+                    {[
+                      "Brand identity and visual direction",
+                      "Business presentations and professional materials",
+                      "Brand messaging and positioning",
+                      "Improving how customers perceive our business",
+                    ].map((item) => (
+                      <label
+                        key={item}
+                        className="flex items-center gap-3 text-zinc-300"
+                      >
+                        <input
+                          type="checkbox"
+                          className="h-4 w-4 accent-cyan-400"
+                        />
+                        {item}
+                      </label>
+                    ))}
+
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="mb-4 text-lg text-white">Digital Presence</h3>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+
+                    {[
+                      "Website design and development",
+                      "Improving online credibility",
+                      "Digital platforms and customer experience",
+                      "Strengthening online visibility",
+                    ].map((item) => (
+                      <label
+                        key={item}
+                        className="flex items-center gap-3 text-zinc-300"
+                      >
+                        <input
+                          type="checkbox"
+                          className="h-4 w-4 accent-cyan-400"
+                        />
+                        {item}
+                      </label>
+                    ))}
+
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="mb-4 text-lg text-white">Operational Systems</h3>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+
+                    {[
+                      "Business process automation",
+                      "Internal management systems",
+                      "Improving workflow efficiency",
+                      "Custom software solutions",
+                    ].map((item) => (
+                      <label
+                        key={item}
+                        className="flex items-center gap-3 text-zinc-300"
+                      >
+                        <input
+                          type="checkbox"
+                          className="h-4 w-4 accent-cyan-400"
+                        />
+                        {item}
+                      </label>
+                    ))}
+
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="mb-4 text-lg text-white">Strategic Direction</h3>
+
+                  <label className="flex items-center gap-3 text-zinc-300">
                     <input
                       type="checkbox"
                       className="h-4 w-4 accent-cyan-400"
                     />
-                    {service}
+                    I am unsure what we need and would like strategic guidance.
                   </label>
-                ))}
+
+                </div>
 
               </div>
 
@@ -132,22 +202,23 @@ export default function ConsultationForm() {
             <div className="grid gap-8 md:grid-cols-2">
 
               <select
-                className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
                 defaultValue=""
+                className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
-                  Estimated Budget
+                  Expected Investment Range
                 </option>
-                <option>Under $500</option>
-                <option>$500 – $1,000</option>
-                <option>$1,000 – $3,000</option>
-                <option>$3,000 – $10,000</option>
+                <option>Under Le3,000</option>
+                <option>Le3,000 – Le5,000</option>
+                <option>Le5,000 – Le8,000</option>
+                <option>Le12,000 – Le15,000</option>
+                <option>Le18,000 – Le24,000</option>
                 <option>Let's Discuss</option>
               </select>
 
               <select
-                className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
                 defaultValue=""
+                className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
                   Desired Timeline
@@ -161,14 +232,36 @@ export default function ConsultationForm() {
 
             </div>
 
+            {/* Referral Source */}
+
+            <div>
+
+              <select
+                defaultValue=""
+                className="w-full border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
+              >
+                <option value="" disabled>
+                  How did you hear about LYNPHICS?
+                </option>
+
+                <option>Google Search</option>
+                <option>Instagram</option>
+                <option>Facebook</option>
+                <option>Returning Client</option>
+                <option>Other</option>
+
+              </select>
+
+            </div>
+
             {/* Business Challenge */}
 
             <div>
 
               <textarea
                 rows={6}
-                placeholder="Tell us about your business, your current challenges, and what you'd like to improve."
-                className="w-full border-b border-zinc-800 bg-transparent py-4 text-lg leading-8 outline-none resize-none transition-colors focus:border-cyan-400"
+                placeholder="Describe your business, the challenges you're currently facing, and what success would look like after this project."
+                className="w-full resize-none border-b border-zinc-800 bg-transparent py-4 text-lg leading-8 outline-none transition-colors focus:border-cyan-400"
               />
 
             </div>
@@ -179,21 +272,7 @@ export default function ConsultationForm() {
 
               <button
                 type="submit"
-                className="
-                  rounded-full
-                  border
-                  border-white
-                  bg-white
-                  px-10
-                  py-4
-                  text-sm
-                  uppercase
-                  tracking-[0.15em]
-                  text-black
-                  transition-all
-                  duration-300
-                  hover:bg-zinc-200
-                "
+                className="rounded-full border border-white bg-white px-10 py-4 text-sm uppercase tracking-[0.15em] text-black transition-all duration-300 hover:bg-zinc-200"
               >
                 Request Consultation
               </button>
