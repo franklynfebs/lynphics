@@ -14,7 +14,7 @@ export default function PrivacyPage() {
           </h1>
 
           <p className="mt-8 leading-8 text-zinc-400">
-            Effective Date: June 2026
+            Effective Date: July 2026
           </p>
 
           <div className="mt-20 space-y-16">
@@ -25,9 +25,10 @@ export default function PrivacyPage() {
               </h2>
 
               <p className="mt-6 leading-8 text-zinc-400">
-                LYNPHICS respects your privacy and is committed to protecting
-                any information you share through this website. This policy
-                explains how information is collected, used and protected.
+                At LYNPHICS, protecting your information is part of building
+                trust. This Privacy Policy explains what information we collect,
+                how we use it, how we protect it, and the choices available to
+                you when you use our website or request our services.
               </p>
             </section>
 
@@ -36,13 +37,23 @@ export default function PrivacyPage() {
                 Information We Collect
               </h2>
 
-              <ul className="mt-6 space-y-4 text-zinc-400 leading-8 list-disc pl-6">
-                <li>Name</li>
+              <p className="mt-6 leading-8 text-zinc-400">
+                Depending on how you interact with our website, we may collect
+                information including:
+              </p>
+
+              <ul className="mt-6 space-y-4 pl-6 text-zinc-400 leading-8 list-disc">
+                <li>Full name</li>
                 <li>Email address</li>
                 <li>Phone number</li>
-                <li>Business information</li>
-                <li>Consultation request details</li>
-                <li>Technical information such as browser and device type</li>
+                <li>Business name</li>
+                <li>Industry and company information</li>
+                <li>Consultation requests and project requirements</li>
+                <li>Communication history with LYNPHICS</li>
+                <li>
+                  Technical information such as browser type, device
+                  information, pages visited and general usage statistics
+                </li>
               </ul>
             </section>
 
@@ -51,36 +62,79 @@ export default function PrivacyPage() {
                 How We Use Your Information
               </h2>
 
-              <ul className="mt-6 space-y-4 text-zinc-400 leading-8 list-disc pl-6">
-                <li>Respond to enquiries.</li>
-                <li>Schedule consultations.</li>
-                <li>Deliver requested services.</li>
-                <li>Improve our website.</li>
-                <li>Communicate regarding projects.</li>
+              <p className="mt-6 leading-8 text-zinc-400">
+                Information collected through this website may be used to:
+              </p>
+
+              <ul className="mt-6 space-y-4 pl-6 text-zinc-400 leading-8 list-disc">
+                <li>Respond to enquiries and consultation requests.</li>
+                <li>Evaluate potential projects.</li>
+                <li>Communicate throughout engagements.</li>
+                <li>Deliver our services.</li>
+                <li>Improve the performance and usability of our website.</li>
+                <li>Maintain business records and internal administration.</li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-2xl font-light">
-                Data Protection
+                Cookies & Analytics
               </h2>
 
               <p className="mt-6 leading-8 text-zinc-400">
-                Reasonable administrative and technical safeguards are used to
-                protect your information against unauthorized access, alteration
-                or disclosure.
+                LYNPHICS uses cookies and similar technologies to improve the
+                browsing experience and understand how visitors interact with
+                our website.
+              </p>
+
+              <p className="mt-6 leading-8 text-zinc-400">
+                We currently use Google Analytics and Google Tag Manager to
+                collect anonymous website usage information, such as pages
+                visited, traffic sources, device types and general engagement.
+                This information helps us improve the quality and effectiveness
+                of our website.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-light">
-                Third-Party Services
+                Information Sharing
               </h2>
 
               <p className="mt-6 leading-8 text-zinc-400">
-                LYNPHICS may use trusted third-party providers for website
-                analytics, communication and scheduling. These providers only
-                receive information necessary to perform their services.
+                LYNPHICS does not sell, rent or trade your personal information.
+                Information may only be shared with trusted third-party service
+                providers where necessary to operate our website, provide
+                services, analyse website performance or communicate with
+                clients.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-light">
+                Data Security
+              </h2>
+
+              <p className="mt-6 leading-8 text-zinc-400">
+                We implement reasonable administrative, technical and
+                organisational safeguards designed to protect your information
+                from unauthorised access, disclosure, alteration or destruction.
+                While we take security seriously, no method of internet
+                transmission or electronic storage can be guaranteed to be
+                completely secure.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-light">
+                Data Retention
+              </h2>
+
+              <p className="mt-6 leading-8 text-zinc-400">
+                Personal information is retained only for as long as reasonably
+                necessary to respond to enquiries, deliver services, maintain
+                business records, comply with legal obligations or resolve
+                disputes.
               </p>
             </section>
 
@@ -90,8 +144,24 @@ export default function PrivacyPage() {
               </h2>
 
               <p className="mt-6 leading-8 text-zinc-400">
-                You may request access, correction or deletion of your personal
-                information by contacting LYNPHICS directly.
+                You may request access to the personal information we hold about
+                you, request corrections where information is inaccurate, or
+                request deletion of your information where applicable. We will
+                respond to reasonable requests in accordance with applicable
+                laws.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-light">
+                Changes to This Policy
+              </h2>
+
+              <p className="mt-6 leading-8 text-zinc-400">
+                This Privacy Policy may be updated periodically to reflect
+                changes to our services, technologies or legal obligations. Any
+                updates will be published on this page together with the revised
+                effective date.
               </p>
             </section>
 
@@ -101,8 +171,11 @@ export default function PrivacyPage() {
               </h2>
 
               <p className="mt-6 leading-8 text-zinc-400">
-                For privacy enquiries, please contact LYNPHICS using the contact
-                information provided on this website.
+                If you have any questions regarding this Privacy Policy or how
+                your information is handled, please contact LYNPHICS using the
+                contact information provided on this website. Once our business
+                email is active, privacy enquiries may also be directed to
+                <span className="text-white"> info@lynphics.com</span>.
               </p>
             </section>
 
