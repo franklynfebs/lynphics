@@ -80,6 +80,10 @@ const API_URL = import.meta.env.VITE_API_URL;
     console.log("ENV:", import.meta.env);
     console.log("API URL:", import.meta.env.VITE_API_URL);
 
+    console.log("Submitting:");
+    console.log(JSON.stringify(formData, null, 2));
+
+
 const response = await fetch(
   `${API_URL}/consultations`,
   {
@@ -91,13 +95,17 @@ const response = await fetch(
     body: JSON.stringify(formData),
   }
 );
+    
     const data = await response.json();
 
+    console.log("Response Status:", response.status);
+    console.log("Response Body:", data);
+
     if (!response.ok) {
-      console.error(data);
+      console.error("Submission failed:", data);
       return;
     }
-
+    
     console.log("Consultation submitted successfully:", data);
   } catch (error) {
     console.error("Error submitting consultation:", error);
