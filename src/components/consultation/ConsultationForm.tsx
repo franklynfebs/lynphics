@@ -1,6 +1,106 @@
+import { useState } from "react";
 import Container from "../shared/Container";
 
 export default function ConsultationForm() {
+
+  const [formData, setFormData] = useState({
+  full_name: "",
+  business_name: "",
+  email: "",
+  phone: "",
+
+  industry: "",
+  company_size: "",
+  website: "",
+
+  business_challenge: "",
+
+  investment_range: "",
+  timeline: "",
+
+  preferred_contact_method: "",
+
+  referral_source: "",
+
+  consultation_interests: [] as {
+  category: string;
+  interest: string;
+}[],
+
+});
+
+const handleChange = (
+  e: React.ChangeEvent<
+    HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+  >
+) => {
+  const { name, value } = e.target;
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
+
+const handleInterestChange = (
+  category: string,
+  interest: string,
+  checked: boolean
+) => {
+  setFormData((prev) => {
+    if (checked) {
+      return {
+        ...prev,
+        consultation_interests: [
+          ...prev.consultation_interests,
+          { category, interest },
+        ],
+      };
+    }
+
+    return {
+      ...prev,
+      consultation_interests: prev.consultation_interests.filter(
+        (item) =>
+          !(
+            item.category === category &&
+            item.interest === interest
+          )
+      ),
+    };
+  });
+};
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  try {
+  const API_URL = import.meta.env.VITE_API_URL;
+
+const response = await fetch(
+  `${API_URL}/consultations`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(formData),
+  }
+);
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error(data);
+      return;
+    }
+
+    console.log("Consultation submitted successfully:", data);
+  } catch (error) {
+    console.error("Error submitting consultation:", error);
+  }
+};
+
   return (
     <section className="border-t border-zinc-900 py-32">
       <Container>
@@ -18,8 +118,10 @@ export default function ConsultationForm() {
             arranging a consultation.
           </p>
 
-          <form className="space-y-12">
-
+          <form
+  onSubmit={handleSubmit}
+  className="space-y-12"
+>
             {/* =========================
                 Contact Information
             ========================== */}
@@ -28,7 +130,9 @@ export default function ConsultationForm() {
 
               <input
                 type="text"
-                name="fullName"
+                name="full_name"
+                 value={formData.full_name}
+                   onChange={handleChange}
                 placeholder="Full Name *"
                 required
                 className="w-full border-b border-zinc-800 bg-transparent py-4 text-lg outline-none transition-colors focus:border-cyan-400"
@@ -36,7 +140,9 @@ export default function ConsultationForm() {
 
               <input
                 type="text"
-                name="businessName"
+                name="business_name"
+                value={formData.business_name}
+                  onChange={handleChange}
                 placeholder="Business Name *"
                 required
                 className="w-full border-b border-zinc-800 bg-transparent py-4 text-lg outline-none transition-colors focus:border-cyan-400"
@@ -45,6 +151,8 @@ export default function ConsultationForm() {
               <input
                 type="email"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Email Address *"
                 required
                 className="w-full border-b border-zinc-800 bg-transparent py-4 text-lg outline-none transition-colors focus:border-cyan-400"
@@ -53,6 +161,8 @@ export default function ConsultationForm() {
               <input
                 type="tel"
                 name="phone"
+                value={formData.phone}
+                onChange={handleChange}
                 placeholder="Phone / WhatsApp Number *"
                 required
                 className="w-full border-b border-zinc-800 bg-transparent py-4 text-lg outline-none transition-colors focus:border-cyan-400"
@@ -68,7 +178,8 @@ export default function ConsultationForm() {
 
               <select
                 name="industry"
-                defaultValue=""
+                value={formData.industry}
+                onChange={handleChange}
                 className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
@@ -78,6 +189,7 @@ export default function ConsultationForm() {
                 <option value="Restaurant">Restaurant</option>
                 <option value="Retail">Retail</option>
                 <option value="Construction">Construction</option>
+                <option value="Agriculture">Agriculture</option>
                 <option value="Healthcare">Healthcare</option>
                 <option value="Education">Education</option>
                 <option value="Professional Services">Professional Services</option>
@@ -93,8 +205,9 @@ export default function ConsultationForm() {
               </select>
 
               <select
-                name="companySize"
-                defaultValue=""
+                name="company_size"
+                value={formData.company_size}
+                onChange={handleChange}
                 className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
@@ -114,6 +227,8 @@ export default function ConsultationForm() {
                 name="website"
                 placeholder="Website or Social Media (Optional)"
                 className="w-full border-b border-zinc-800 bg-transparent py-4 text-lg outline-none transition-colors focus:border-cyan-400 md:col-span-2"
+                value={formData.website}
+                onChange={handleChange}
               />
 
             </div>
@@ -151,11 +266,21 @@ export default function ConsultationForm() {
                         className="flex items-center gap-3 text-zinc-300"
                       >
                         <input
-                          type="checkbox"
-                          name="interests"
-                          value={item}
-                          className="h-4 w-4 accent-cyan-400"
-                        />
+  type="checkbox"
+  checked={formData.consultation_interests.some(
+    (interest) =>
+      interest.category === "Presentation" &&
+      interest.interest === item
+  )}
+  onChange={(e) =>
+    handleInterestChange(
+      "Presentation",
+      item,
+      e.target.checked
+    )
+  }
+  className="h-4 w-4 accent-cyan-400"
+/>
                         {item}
                       </label>
                     ))}
@@ -185,11 +310,21 @@ export default function ConsultationForm() {
                         className="flex items-center gap-3 text-zinc-300"
                       >
                         <input
-                          type="checkbox"
-                          name="interests"
-                          value={item}
-                          className="h-4 w-4 accent-cyan-400"
-                        />
+  type="checkbox"
+  checked={formData.consultation_interests.some(
+    (interest) =>
+      interest.category === "Digital Presence" &&
+      interest.interest === item
+  )}
+  onChange={(e) =>
+    handleInterestChange(
+      "Digital Presence",
+      item,
+      e.target.checked
+    )
+  }
+  className="h-4 w-4 accent-cyan-400"
+/>
                         {item}
                       </label>
                     ))}
@@ -218,12 +353,22 @@ export default function ConsultationForm() {
                         key={item}
                         className="flex items-center gap-3 text-zinc-300"
                       >
-                        <input
-                          type="checkbox"
-                          name="interests"
-                          value={item}
-                          className="h-4 w-4 accent-cyan-400"
-                        />
+                     <input
+  type="checkbox"
+  checked={formData.consultation_interests.some(
+    (interest) =>
+      interest.category === "Operational Systems" &&
+      interest.interest === item
+  )}
+  onChange={(e) =>
+    handleInterestChange(
+      "Operational Systems",
+      item,
+      e.target.checked
+    )
+  }
+  className="h-4 w-4 accent-cyan-400"
+/>
                         {item}
                       </label>
                     ))}
@@ -242,12 +387,22 @@ export default function ConsultationForm() {
 
                   <label className="flex items-center gap-3 text-zinc-300">
 
-                    <input
-                      type="checkbox"
-                      name="interests"
-                      value="Strategic Guidance"
-                      className="h-4 w-4 accent-cyan-400"
-                    />
+                   <input
+  type="checkbox"
+  checked={formData.consultation_interests.some(
+    (interest) =>
+      interest.category === "Strategic Direction" &&
+      interest.interest === "Strategic Guidance"
+  )}
+  onChange={(e) =>
+    handleInterestChange(
+      "Strategic Direction",
+      "Strategic Guidance",
+      e.target.checked
+    )
+  }
+  className="h-4 w-4 accent-cyan-400"
+/>
 
                     I am unsure what we need and would like strategic guidance.
 
@@ -266,8 +421,10 @@ export default function ConsultationForm() {
             <div>
 
               <textarea
-                name="businessChallenge"
+                name="business_challenge"
                 rows={6}
+                  value={formData.business_challenge}
+                  onChange={handleChange}
                 placeholder="Describe your business, the challenges you're currently facing, and what success would look like after this project."
                 className="w-full resize-none border-b border-zinc-800 bg-transparent py-4 text-lg leading-8 outline-none transition-colors focus:border-cyan-400"
               />
@@ -281,8 +438,9 @@ export default function ConsultationForm() {
             <div className="grid gap-8 md:grid-cols-2">
 
               <select
-                name="investmentRange"
-                defaultValue=""
+                name="investment_range"
+                value={formData.investment_range}
+                onChange={handleChange}
                 className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                <option value="" disabled>
@@ -319,7 +477,8 @@ export default function ConsultationForm() {
 
               <select
                 name="timeline"
-                defaultValue=""
+                value={formData.timeline}
+                onChange={handleChange}
                 className="border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
@@ -327,6 +486,7 @@ export default function ConsultationForm() {
                 </option>
 
                 <option value="Start Work Now">Start Work Now</option>
+                <option value="Within 1 Week">Within 1 Week</option>
                 <option value="Within 1 Month">Within 1 Month</option>
                 <option value="1-3 Months">1–3 Months</option>
                 <option value="3-6 Months">3–6 Months</option>
@@ -343,8 +503,9 @@ export default function ConsultationForm() {
             <div>
 
               <select
-                name="preferredContactMethod"
-                defaultValue=""
+                name="preferred_contact_method"
+                value={formData.preferred_contact_method}
+                onChange={handleChange}
                 className="w-full border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
@@ -366,8 +527,9 @@ export default function ConsultationForm() {
             <div>
 
               <select
-                name="referralSource"
-                defaultValue=""
+                name="referral_source"
+                value={formData.referral_source}
+                onChange={handleChange}
                 className="w-full border-b border-zinc-800 bg-black py-4 text-lg text-zinc-300 outline-none transition-colors focus:border-cyan-400"
               >
                 <option value="" disabled>
@@ -406,4 +568,5 @@ export default function ConsultationForm() {
       </Container>
     </section>
   );
+  
 }
