@@ -153,6 +153,85 @@ console.log("Consultation submitted successfully:", data);
   return (
     <section className="border-t border-zinc-900 py-32">
       <Container>
+        {(isSubmitting || successMessage) && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-cyan-500/70 backdrop-blur-sm">
+    <div className="mx-auto max-w-xl px-8 text-center text-white">
+
+      {isSubmitting && (
+        <>
+          <div className="mx-auto mb-8 h-14 w-14 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+
+          <h2 className="mb-4 text-4xl font-light">
+            Submitting Your Consultation
+          </h2>
+
+          <p className="text-lg text-white/90">
+            Please wait while we securely send your request...
+          </p>
+        </>
+      )}
+
+      {!isSubmitting && successMessage && (
+        <>
+          <div className="mb-8 text-7xl">✓</div>
+
+          <h2 className="mb-4 text-4xl font-light">
+            Consultation Request Received
+          </h2>
+
+          <p className="mb-10 text-lg leading-8 text-white/90">
+            {successMessage}
+          </p>
+
+          <button
+            onClick={() => {
+              setSuccessMessage("");
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }}
+            className="rounded-full bg-white px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-cyan-700 transition hover:bg-zinc-100"
+          >
+            Back to Consultation Form
+          </button>
+        </>
+      )}
+
+      {!isSubmitting && errorMessage && (
+        <>
+          <div className="mb-8 text-7xl">✗</div>
+
+          <h2 className="mb-4 text-4xl font-light">
+            Submission Error
+          </h2>
+
+          <p className="mb-10 text-lg leading-8 text-white/90">
+            {errorMessage}
+          </p>
+
+          <button
+            onClick={() => {
+              setErrorMessage("");
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }}
+            className="rounded-full bg-white px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-cyan-700 transition hover:bg-zinc-100"
+          >
+            Back to Consultation Form
+          </button>
+        </>
+      )}
+
+<div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full border-4 border-white">
+    ✓
+</div>
+
+    </div>
+  </div>
+)}
         <div className="mx-auto max-w-3xl">
           <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
            {isSubmitting ? "Submitting..." : "Request Consultation"}
@@ -166,18 +245,6 @@ console.log("Consultation submitted successfully:", data);
             Complete the form below and we'll review your business needs before
             arranging a consultation.
           </p>
-
-          {successMessage && (
-  <div className="mb-8 rounded-lg border border-green-500/30 bg-green-500/10 px-6 py-4 text-green-300">
-    {successMessage}
-  </div>
-)}
-
-{errorMessage && (
-  <div className="mb-8 rounded-lg border border-red-500/30 bg-red-500/10 px-6 py-4 text-red-300">
-    {errorMessage}
-  </div>
-)}
 
           <form
   onSubmit={handleSubmit}
@@ -622,7 +689,9 @@ console.log("Consultation submitted successfully:", data);
     disabled={isSubmitting}
     className="rounded-full border border-white bg-white px-10 py-4 text-sm uppercase tracking-[0.15em] text-black transition-all duration-300 hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-60"
 >
-    {isSubmitting ? "Submitting..." : "Request Consultation"}
+   <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
+  Request Consultation
+</p>
 </button>
              
 
