@@ -29,6 +29,7 @@ export default function ConsultationForm() {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
 const handleChange = (
@@ -75,7 +76,7 @@ const handleInterestChange = (
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
-
+  setIsSubmitting(true);
 setSuccessMessage("");
 setErrorMessage("");
 
@@ -121,13 +122,31 @@ setSuccessMessage(
   "Thank you! Your consultation request has been received. We'll contact you within 24 hours."
 );
 
+setFormData({
+  full_name: "",
+  business_name: "",
+  email: "",
+  phone: "",
+  industry: "",
+  company_size: "",
+  website: "",
+  business_challenge: "",
+  investment_range: "",
+  timeline: "",
+  preferred_contact_method: "",
+  referral_source: "",
+  consultation_interests: [],
+});
+
 console.log("Consultation submitted successfully:", data);
   } catch (error) {
     console.error("Error submitting consultation:", error);
      setSuccessMessage("");
+
      setErrorMessage(
     "Unable to connect to the server. Please try again later."
   );
+  } finally { setIsSubmitting(false);
   }
 };
 
@@ -136,7 +155,7 @@ console.log("Consultation submitted successfully:", data);
       <Container>
         <div className="mx-auto max-w-3xl">
           <p className="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-500">
-            Request Consultation
+           {isSubmitting ? "Submitting..." : "Request Consultation"}
           </p>
 
           <h2 className="mb-4 text-4xl font-light">
@@ -597,9 +616,10 @@ console.log("Consultation submitted successfully:", data);
             <div className="pt-4">
 
               <button
-                type="submit"
-                className="rounded-full border border-white bg-white px-10 py-4 text-sm uppercase tracking-[0.15em] text-black transition-all duration-300 hover:bg-zinc-200"
-              >
+    type="submit"
+    disabled={isSubmitting}
+    className="rounded-full border border-white bg-white px-10 py-4 text-sm uppercase tracking-[0.15em] text-black transition-all duration-300 hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-60"
+>
                 Request Consultation
               </button>
 
