@@ -2,32 +2,34 @@ import { useState } from "react";
 import Container from "../shared/Container";
 
 export default function ConsultationForm() {
-
   const [formData, setFormData] = useState({
-  full_name: "",
-  business_name: "",
-  email: "",
-  phone: "",
+    full_name: "",
+    business_name: "",
+    email: "",
+    phone: "",
 
-  industry: "",
-  company_size: "",
-  website: "",
+    industry: "",
+    company_size: "",
+    website: "",
 
-  business_challenge: "",
+    business_challenge: "",
 
-  investment_range: "",
-  timeline: "",
+    investment_range: "",
+    timeline: "",
 
-  preferred_contact_method: "",
+    preferred_contact_method: "",
 
-  referral_source: "",
+    referral_source: "",
 
-  consultation_interests: [] as {
-  category: string;
-  interest: string;
-}[],
+    consultation_interests: [] as {
+      category: string;
+      interest: string;
+    }[],
+  });
 
-});
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
 
 const handleChange = (
   e: React.ChangeEvent<
@@ -74,6 +76,9 @@ const handleInterestChange = (
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 
+setSuccessMessage("");
+setErrorMessage("");
+
   try {
 const API_URL = import.meta.env.VITE_API_URL;
     console.log("MODE:", import.meta.env.MODE);
@@ -101,14 +106,28 @@ const response = await fetch(
     console.log("Response Status:", response.status);
     console.log("Response Body:", data);
 
-    if (!response.ok) {
-      console.error("Submission failed:", data);
-      return;
-    }
-    
-    console.log("Consultation submitted successfully:", data);
+  
+if (!response.ok) {
+  console.error("Server Error:", data);
+
+  setErrorMessage(
+    data.message || "Unable to submit your consultation request. Please try again later."
+  );
+
+  return;
+}
+setErrorMessage("");
+setSuccessMessage(
+  "Thank you! Your consultation request has been received. We'll contact you within 24 hours."
+);
+
+console.log("Consultation submitted successfully:", data);
   } catch (error) {
     console.error("Error submitting consultation:", error);
+     setSuccessMessage("");
+     setErrorMessage(
+    "Unable to connect to the server. Please try again later."
+  );
   }
 };
 
@@ -128,6 +147,18 @@ const response = await fetch(
             Complete the form below and we'll review your business needs before
             arranging a consultation.
           </p>
+
+          {successMessage && (
+  <div className="mb-8 rounded-lg border border-green-500/30 bg-green-500/10 px-6 py-4 text-green-300">
+    {successMessage}
+  </div>
+)}
+
+{errorMessage && (
+  <div className="mb-8 rounded-lg border border-red-500/30 bg-red-500/10 px-6 py-4 text-red-300">
+    {errorMessage}
+  </div>
+)}
 
           <form
   onSubmit={handleSubmit}
