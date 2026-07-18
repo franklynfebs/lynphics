@@ -616,12 +616,15 @@ console.log("Consultation submitted successfully:", data);
             <div className="pt-4">
 
               <button
+    
+              
     type="submit"
     disabled={isSubmitting}
     className="rounded-full border border-white bg-white px-10 py-4 text-sm uppercase tracking-[0.15em] text-black transition-all duration-300 hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-60"
 >
-                Request Consultation
-              </button>
+    {isSubmitting ? "Submitting..." : "Request Consultation"}
+</button>
+             
 
             </div>
 
