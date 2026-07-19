@@ -172,17 +172,18 @@ console.log("Consultation submitted successfully:", data);
       )}
 
       {!isSubmitting && successMessage && (
-        <>
-          <div className="mb-8 text-7xl">✓</div>
+  <>
+    <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full border-4 border-white text-5xl">
+      ✓
+    </div>
 
-          <h2 className="mb-4 text-4xl font-light">
-            Consultation Request Received
-          </h2>
+    <h2 className="mb-4 text-4xl font-light">
+      Consultation Request Received
+    </h2>
 
-          <p className="mb-10 text-lg leading-8 text-white/90">
-            {successMessage}
-          </p>
-
+    <p className="mb-10 text-lg leading-8 text-white/90">
+      {successMessage}
+    </p>
           <button
             onClick={() => {
               setSuccessMessage("");
@@ -200,7 +201,9 @@ console.log("Consultation submitted successfully:", data);
 
       {!isSubmitting && errorMessage && (
         <>
-          <div className="mb-8 text-7xl">✗</div>
+          <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full border-4 border-white text-5xl">
+            ✗
+          </div>
 
           <h2 className="mb-4 text-4xl font-light">
             Submission Error
@@ -224,11 +227,6 @@ console.log("Consultation submitted successfully:", data);
           </button>
         </>
       )}
-
-<div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full border-4 border-white">
-    ✓
-</div>
-
     </div>
   </div>
 )}
